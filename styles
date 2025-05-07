@@ -1,1 +1,92 @@
-styles.css
+// Sample data - in a real app, this would come from an API/database
+const opportunities = [
+    {
+        id: 1,
+        title: "Mobile Coffee Cart",
+        location: "Downtown Area",
+        industry: "food",
+        investment: "low",
+        description: "High foot traffic area lacks quality coffee options. Perfect for a mobile coffee cart business.",
+        potential: "$3,000-$5,000 monthly profit",
+        resources: "Local suppliers available"
+    },
+    {
+        id: 2,
+        title: "IT Support for Small Businesses",
+        location: "Suburban Office Parks",
+        industry: "tech",
+        investment: "medium",
+        description: "Many small businesses need affordable IT support with no local providers specializing in this.",
+        potential: "$5,000-$8,000 monthly profit",
+        resources: "Training programs available"
+    },
+    {
+        id: 3,
+        title: "Specialty Fitness Studio",
+        location: "North District",
+        industry: "health",
+        investment: "high",
+        description: "Growing residential area with demand for boutique fitness options like cycling or yoga.",
+        potential: "$8,000-$12,000 monthly profit",
+        resources: "Equipment financing available"
+    }
+];
+
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const location = document.getElementById('location').value.toLowerCase();
+    const industry = document.getElementById('industry').value;
+    const investment = document.getElementById('investment').value;
+    
+    // Filter opportunities based on search criteria
+    let filtered = opportunities.filter(opp => {
+        return (location === '' || opp.location.toLowerCase().includes(location)) &&
+               (industry === '' || opp.industry === industry) &&
+               (investment === '' || opp.investment === investment);
+    });
+    
+    displayResults(filtered);
+});
+
+function displayResults(results) {
+    const container = document.getElementById('resultsContainer');
+    container.innerHTML = '';
+    
+    if (results.length === 0) {
+        container.innerHTML = '<p>No opportunities found matching your criteria. Try broadening your search.</p>';
+        return;
+    }
+    
+    results.forEach(opportunity => {
+        const card = document.createElement('div');
+        card.className = 'opportunity-card';
+        card.innerHTML = `
+            <h3>${opportunity.title}</h3>
+            <p><strong>Location:</strong> ${opportunity.location}</p>
+            <p>${opportunity.description}</p>
+            <p><strong>Potential:</strong> ${opportunity.potential}</p>
+            <p><strong>Resources:</strong> ${opportunity.resources}</p>
+            <button class="details-btn" data-id="${opportunity.id}">View Details</button>
+        `;
+        container.appendChild(card);
+    });
+    
+    // Add event listeners to detail buttons
+    document.querySelectorAll('.details-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            viewOpportunityDetails(id);
+        });
+    });
+}
+
+function viewOpportunityDetails(id) {
+    // In a real app, this would show more details or redirect to a detail page
+    alert(`Viewing details for opportunity ID: ${id}\nThis would show more comprehensive information in a complete application.`);
+}
+
+// Display all opportunities on page load
+window.onload = function() {
+    displayResults(opportunities);
+};
