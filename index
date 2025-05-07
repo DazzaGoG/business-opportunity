@@ -1,1 +1,78 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Opportunity Finder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Business Opportunity Finder</h1>
+        <p>Discover profitable ventures in your area</p>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <div class="container">
+                <h2>Find Money-Making Opportunities</h2>
+                <form id="searchForm">
+                    <input type="text" id="location" placeholder="Enter your location" required>
+                    <select id="industry">
+                        <option value="">All Industries</option>
+                        <option value="tech">Technology</option>
+                        <option value="food">Food & Beverage</option>
+                        <option value="retail">Retail</option>
+                        <option value="services">Professional Services</option>
+                        <option value="health">Health & Wellness</option>
+                    </select>
+                    <select id="investment">
+                        <option value="">Any Investment Level</option>
+                        <option value="low">Low ($0-$10k)</option>
+                        <option value="medium">Medium ($10k-$50k)</option>
+                        <option value="high">High ($50k+)</option>
+                    </select>
+                    <button type="submit">Find Opportunities</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="container">
+                <h2>Opportunities Near You</h2>
+                <div id="resultsContainer" class="opportunities-grid">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <h3>1. Identify Gaps</h3>
+                        <p>We analyze market data to find underserved needs in your area.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>2. Evaluate Potential</h3>
+                        <p>Get estimates of startup costs and revenue potential.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>3. Connect</h3>
+                        <p>Access resources and suppliers to get started.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Business Opportunity Finder</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
